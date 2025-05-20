@@ -1,0 +1,24 @@
+# PostgreSQL dump files
+*.dump
+*.backup
+
+# PostgreSQL data directories (don't store the actual database files)
+pgdata/
+postgres-data/
+data/
+db-data/
+
+# Password or authentication files
+.pgpass
+.pg_service.conf
+
+# Log files
+*.log
+logs/
+
+# Environment files
+.env
+.env.*
+
+# Docker volumes (if using docker-compose for Postgres)
+volumes/
