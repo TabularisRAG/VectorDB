@@ -45,3 +45,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           echo -e "Host 141.72.13.253\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
           ssh -i ~/.ssh/id_rsa pipeline@141.72.13.253
+
+      - name: Create Test Directory
+        run: mkdir database
