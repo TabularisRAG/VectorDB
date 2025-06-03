@@ -37,17 +37,29 @@ jobs:
           ${{ secrets.VPN_ENDPOINT }} \
           --background
           sleep 10
-        
-      - name: Add SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          echo -e "Host 141.72.13.253\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-          ssh -i ~/.ssh/id_rsa pipeline@141.72.13.253
 
-      - name: Create Test Directory
-        run: |
-          mkdir database
-          pwd
-          ls -a
+      - name: Multiple commands
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            whoami
+            ls -al
+            mkdir database
+        
+      # - name: Add SSH key
+      #   run: |
+      #     mkdir -p ~/.ssh
+      #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+      #     chmod 600 ~/.ssh/id_rsa
+      #     echo -e "Host 141.72.13.253\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+      #     ssh -i ~/.ssh/id_rsa pipeline@141.72.13.253
+
+      # - name: Create Test Directory
+      #   run: |
+      #     mkdir database
+      #     pwd
+      #     ls -a
