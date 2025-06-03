@@ -40,8 +40,8 @@ jobs:
       - name: Multiple commands
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          host: ${{ secrets.RAG_HOST }}
+          username: ${{ secrets.PIPELINE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
