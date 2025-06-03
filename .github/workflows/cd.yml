@@ -47,4 +47,6 @@ jobs:
           ssh -i ~/.ssh/id_rsa pipeline@141.72.13.253
 
       - name: Create Test Directory
-        run: mkdir database
+        run: |
+          mkdir database
+          ls -a
