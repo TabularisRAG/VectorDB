@@ -49,4 +49,5 @@ jobs:
       - name: Create Test Directory
         run: |
           mkdir database
+          pwd
           ls -a
