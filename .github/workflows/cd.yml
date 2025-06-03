@@ -32,6 +32,7 @@ jobs:
           echo "${{ secrets.VPN_PASSWORD }}" | sudo openconnect \
           --protocol=anyconnect \
           -u ${{ secrets.VPN_USERNAME }} \
+          --authgroup="Studierende" \
           --passwd-on-stdin \
           ${{ secrets.VPN_ENDPOINT }} \
           --background
