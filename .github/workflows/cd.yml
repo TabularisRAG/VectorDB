@@ -36,7 +36,6 @@ jobs:
           --passwd-on-stdin \
           ${{ secrets.VPN_ENDPOINT }} \
           --background
-          sleep 10
 
       - name: Multiple commands
         uses: appleboy/ssh-action@v1
