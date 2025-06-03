@@ -43,8 +43,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          echo -e "Host 141.72.13.253\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   
       - name: SSH into server and run command
         run: |
-          ssh pipeline@141.72.13.253 "hostname && whoami && uptime"
+          ssh -i ~/.ssh/id_rsa pipeline@141.72.13.253
