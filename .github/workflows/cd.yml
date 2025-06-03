@@ -30,7 +30,7 @@ jobs:
       - name: Connect to VPN
         run: |
           echo "${{ secrets.VPN_PASSWORD }}" | sudo openconnect \
-          --protocol=${{ secrets.VPN_PROTOCOL }} \
+          --protocol=anyconnect \
           -u ${{ secrets.VPN_USERNAME }} \
           --passwd-on-stdin \
           ${{ secrets.VPN_ENDPOINT }} \
