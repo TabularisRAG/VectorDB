@@ -36,6 +36,15 @@ jobs:
           --passwd-on-stdin \
           ${{ secrets.VPN_ENDPOINT }} \
           --background
+          sleep 10
         
-      - name: Ping server
-        run: ping 141.72.13.253
+      - name: Add SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo -e "Host 141.72.13.253\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  
+      - name: SSH into server and run command
+        run: |
+          ssh pipeline@141.72.13.253 "hostname && whoami && uptime"
