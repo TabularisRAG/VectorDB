@@ -43,14 +43,5 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          
-          SSH_ASKPASS_SCRIPT=$(mktemp)
-          echo '#!/bin/sh' > $SSH_ASKPASS_SCRIPT
-          echo "echo '${{ secrets.SSH_PASSPHRASE }}'" >> $SSH_ASKPASS_SCRIPT
-          chmod +x $SSH_ASKPASS_SCRIPT
-          DISPLAY=:1 SSH_ASKPASS=$SSH_ASKPASS_SCRIPT setsid ssh-add ~/.ssh/id_rsa
-
           echo -e "Host 141.72.13.253\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-
-      - name: Connect via SSH
-        run: ssh pipeline@141.72.13.253 "uptime && whoami"
+          ssh -i ~/.ssh/id_rsa pipeline@141.72.13.253
